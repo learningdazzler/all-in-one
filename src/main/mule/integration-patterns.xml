@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="integration-patterns-migrationFlow" doc:id="d62c92fc-d510-4c73-ad21-40e3fff2ba64" >
+		<logger level="INFO" doc:name="migration" doc:id="a21b5227-5bfd-470f-a5c9-44fcea12cff5" message="migration"/>
+	</flow>
+	<flow name="integration-patterns-broadcastFlow" doc:id="d6878088-ce4e-4c8a-8642-228799d47a9e" >
+		<logger level="INFO" doc:name="broadcast" doc:id="6e5f8753-4b4f-45a8-83a4-9355472189ca" message="broadcast"/>
+	</flow>
+	<flow name="integration-patterns-bidirectionalFlow" doc:id="e82b7d44-eeb2-4b22-9161-b1a8c370ef04">
+		<logger level="INFO" doc:name="bidirectional" doc:id="e0fe03be-d8ba-4e82-b18d-66e6e4a1156c" message="bidirectional" />
+	</flow>
+	<flow name="integration-patterns-correlationFlow" doc:id="b8ea73e6-eb8a-4442-89cd-7c7dc33d8b87" >
+		<logger level="INFO" doc:name="correlation" doc:id="42a7c5de-4570-4c41-927b-b00b5074e0f2" message="correlation"/>
+	</flow>
+	<flow name="integration-patterns-aggregationFlow" doc:id="832452df-afac-49c5-8126-41c6ca174236" >
+		<logger level="INFO" doc:name="aggregation" doc:id="ef469e5c-7fc7-4e30-8b1b-ee70dcc40d45" message="aggregation"/>
+	</flow>
+</mule>

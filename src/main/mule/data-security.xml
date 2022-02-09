@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="MuleCreditVault" doc:id="b6856580-0673-4a99-a94f-76ccac2279f8" >
+		<http:listener doc:name="Listener" doc:id="2fcee32d-6c74-45f8-ab9c-24d34cf0abc8" config-ref="HTTP_Listener_config" path="MuleCreditVault"/>
+		<logger level="INFO" doc:name="Actual value of dummyPassword" doc:id="a2b352bb-cd3d-4b8f-bd95-60f4aab6a89a" message="Actual value of dummyPassword is: ${secure::dummyPassword}" doc:description="Here, secure:: is decrypting the encrypted value"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f33e0dae-e8f4-4758-b23d-f438c1ec9086" message="Succesfully decrypted"/>
+	</flow>
+</mule>

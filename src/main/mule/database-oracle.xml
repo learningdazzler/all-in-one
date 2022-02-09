@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="0f8ad1f6-7560-414c-8010-d8fda42f9c1b" >
+		<db:oracle-connection host="127.0.0.1" user="ADMIN" password="123456" instance="xe" />
+	</db:config>
+	<flow name="DatabaseOracleFlow" doc:id="4c1dda9a-9e69-4105-882b-89960c020de4" >
+		<http:listener doc:name="Listener" doc:id="f4301cd5-79b2-4ba4-9ad7-c3f653722505" config-ref="HTTP_Listener_config" path="dbddl"/>
+		<db:select doc:name="Select" doc:id="e999c7db-7979-40f1-8c06-7f4378fa4c77" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from TEST]]></db:sql>
+		</db:select>
+	</flow>
+</mule>

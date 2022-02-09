@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="MySQLtoFileAsItIsFlow" doc:id="5b7e500e-c33a-42d0-9a24-1d827dabf0bc" >
+		<http:listener doc:name="Listener" doc:id="0a912a7b-c380-411f-be01-0e3f693f586e" config-ref="HTTP_Listener_config" path="MySQLtoFileAsItIsFlow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6953249d-d1f5-4a63-9fb4-daea02e575bf" />
+	</flow>
+</mule>

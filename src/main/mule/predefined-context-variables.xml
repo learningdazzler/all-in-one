@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="PredefinedOrContextVariables(ToBeImplemented)" doc:id="72f7275e-06d0-46ff-ab74-0200927de527" >
+		<http:listener doc:name="Listener" doc:id="41a239cd-0c2a-4219-85bd-3df077654416" config-ref="HTTP_Listener_config" path="allPredefinedOrContextVariables"/>
+		<set-payload value="#['allPredefinedOrContextVariables']" doc:name="Set Payload" doc:id="1fb74755-a0cd-4f0e-b618-2dd753bb0f0c" doc:description="payload set to 'allPredefinedOrContextVariables'"/>
+		<ee:transform doc:name="allPredefinedOrContextVariables" doc:id="334671a8-7a92-4ed5-b1a7-2720b7cab2ae" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	
+	//space before and after colon doesn't matter
+	
+	//List of 'app' variable with fields
+	//just_app : app,
+	app_encoding : app.encoding,
+	app_name : app.name,
+	app_standlone : app.standalone,
+	app_workingDirectory : app.workDir,
+	/* getting error like "Registry does not support keySet, while writing Json at registry."
+	app_registry : app.registry */
+	
+	//List of 'attributes' variable with fields
+	//For the http request it will show below as output
+	/*"attributes": {
+        "clientCertificate": null,
+        "listenerPath": "/allPredefinedOrContextVariables",
+        "requestPath": "/allPredefinedOrContextVariables",
+        "queryString": "",
+        "remoteAddress": "/127.0.0.1:54959",
+        "method": "GET",
+        "scheme": "http",
+        "requestUri": "/allPredefinedOrContextVariables",
+        "relativePath": "/allPredefinedOrContextVariables",
+        "localAddress": "/127.0.0.1:8081",
+        "uriParams": {},
+        "queryParams": {},
+        "headers": {
+            "cache-control": "no-cache",
+            "postman-token": "4e1e3aa4-b75c-424b-b4d5-9e99891e4805",
+            "user-agent": "PostmanRuntime/7.6.1",*/
+          //"accept": "*/*",
+          /*"host": "localhost:8081",
+            "accept-encoding": "gzip, deflate",
+            "connection": "keep-alive"
+        },
+        "version": "HTTP/1.1"
+    }*/
+	attributes : attributes,
+	//attributes.xxxxxx where xxxxxx is above field names for http request only
+
+	//List of authentication variable with fields
+	authentication_principal : authentication.principal,
+	authentication_credentials : authentication.credentials,
+	authentication_properties : authentication.properties,
+	
+	//correlationId doesn't have any fields
+	correlationId : correlationId,
+	server_osName : server.osName,
+	
+	//dataType doesn't have any fields
+	data_Type : dataType,
+	
+	//'error' to be implemented
+	error : error,
+	
+	//'flow' has only one field 
+	/*Deprecated: The name of the current flow. 
+	Because flow names are static, this field is deprecated 
+	and only available through specific components, such as the Logger.*/
+	//flow : flow.name,
+	
+	//'message'
+	message : message,
+	
+	//'mule' has 4 fields
+	mule_clusterId : mule.clusterId,
+	mule_home : mule.home,
+	mule_nodeId : mule.nodeId,
+	mule_version : mule.version,
+	
+	//'payload' has infinity fields
+	payload : payload,
+	
+	//'server' has 16 fields
+	mule_env : mule.env,
+	mule_fileSeparator : mule.fileSeparator,
+	mule_host : mule.host,
+	mule_ip : mule.ip,
+	mule_locale : mule.locale,
+	mule_javaVendor : mule.javaVendor,
+	mule_javaVersion : mule.javaVersion,
+	mule_osArch : mule.osArch,
+	mule_osName : mule.osName,
+	mule_osVersion : mule.osVersion,
+	mule_systemProperties : mule.systemProperties,
+	mule_timeZone : mule.timeZone,
+	mule_tmpDir : mule.tmpDir,
+	mule_userDir : mule.userDir,
+	mule_userHome : mule.userHome,
+	mule_userName : mule.userName,
+	
+	
+	//'vars' has no fields
+	//check the below value when variable exists and when not exits
+	vars_dummyvar : vars.dummyvar
+	
+	
+	
+	
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

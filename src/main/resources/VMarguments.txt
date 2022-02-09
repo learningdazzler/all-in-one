@@ -1,0 +1,2 @@
+#Just for backup
+-M-XX:-UseBiasedLocking -M-DMULE_ENV=LOCAL

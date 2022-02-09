@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<flow name="helloworld" doc:id="61f75888-ab88-421d-9254-77defaa8b3dc" >
+		<http:listener doc:name="Listener" doc:id="99755a36-6602-458c-bffe-3014c671255b" config-ref="HTTP_Listener_config" path="helloworld"/>
+		<set-payload value="#['helloworld']" doc:name="Set Payload" doc:id="27935aba-68b3-4112-8b1c-a434f1681416" />
+	</flow>
+	<flow name="helloworldWithStaticAndDynamicValues" doc:id="71d83bc1-8b4a-416c-bf52-7f0e13df30f3" >
+		<http:listener doc:name="Listener" doc:id="25013699-3b05-42e6-ae23-7d79500da4c0" config-ref="HTTP_Listener_config" path="helloworlddynamic" doc:description="Listener defined in Mule domain project 'mydomain'"/>
+		<set-payload value="#['helloworld with dynamic values']" doc:name="Set Payload" doc:id="70c4b4c2-332a-4149-8412-7610592f1bc7" doc:description="static payload 'Helloworld'"/>
+		<logger level="INFO" doc:name="correlationId" doc:id="55af2a2a-f02c-40a1-b991-e05618510e69" message="#['The payload is: ' ++ payload ++ ' with correlationId of: ' ++ correlationId]" doc:description="This shows how to add static value with Multiple Dynamic Predefined values in MEL expression by using '++' in 'function(fx)' selection value"/>
+	</flow>
+	
+	<flow name="removeVariable" doc:id="a298f2a2-32e2-497b-9281-aecaf2a200c4" doc:description="Flow for defing variables and removing variables">
+		<http:listener doc:name="Listener" doc:id="d09fbdd1-be0b-4e20-a39f-439d3bf09dfb" config-ref="HTTP_Listener_config" path="removevariable"/>
+		<set-variable value="12" doc:name="var" doc:id="29149db6-bd38-4352-8138-05c5fa2689a6" variableName="var"/>
+		<logger level="INFO" doc:name="print var" doc:id="507cfe5b-b099-4099-9ac3-04f55dcde420" message='#[vars."var"]'/>
+		<remove-variable doc:name="Remove Variable" doc:id="abd2dffd-4a2d-4abc-bf47-4537a16ae786" variableName="var"/>
+		<logger level="INFO" doc:name="print var" doc:id="83aae9e2-c752-42c8-ae1c-58f2a5e5ca43" message='#[vars."var"]'/>
+	</flow>
+	<flow name="setPayloadInJSONFormat" doc:id="1949e09f-1d14-4af1-95a9-d376b481bb88" >
+		<http:listener doc:name="Listener" doc:id="56725abb-ca35-44d5-86d8-c6c223dcf026" config-ref="HTTP_Listener_config" path="setPayloadInJSONFormat"/>
+		<set-payload value='[{ "name" : "Ana", "office" : "BA" }, { "name" : "Veena", "office" : "Manager" }]' doc:name="Set Payload" doc:id="68672881-85a7-4c3c-be0d-b1569c2af7f4" doc:description="Use double quotes instead of single quotes, because it’ll show ‘bad string’ in postman" mimeType="application/json"/>
+		<logger level="INFO" doc:name="dataType verification" doc:id="814b03f6-6bd4-4c2f-9a61-2e0dd6725568" message="The data type is: #[dataType]" doc:description="dataType verification"/>
+	</flow>
+	<flow name="readAndSetPayloadAsContentOfFile" doc:id="2511c81c-6d23-4ada-a4c5-2b15fab6b01b" >
+		<http:listener doc:name="Listener" doc:id="df0bd611-d296-4e48-8343-e4588e8d169d" config-ref="HTTP_Listener_config" path="readAndSetPayloadAsContentOfFile"/>
+		<set-payload value="${file::readAndSetPayloadAsContentOfFile.json}" doc:name="Set Payload" doc:id="d594cae8-95a9-4425-83cd-228752fece10" mimeType="application/json"/>
+		<logger level="INFO" doc:name="check payload datatype using 'dataType'" doc:id="3ec582d8-0d4a-4226-ba68-e14698450a74" message="#[dataType]"/>
+		<logger level="INFO" doc:name="check payload datatype using 'typeOf()'" doc:id="7ff0bbb3-1197-408d-bb5a-ed291f539faf" message="#[typeOf(payload)]"/>
+	</flow>
+	<flow name="testcall" doc:id="0a68d6f1-f8ef-498e-8f5a-e9a913e79a1a" >
+		<http:listener doc:name="Listener" doc:id="8166bc56-5780-4501-8598-5a08f1685269" config-ref="HTTP_Listener_config" path="testcall"/>
+		<set-payload value='#["testcall"]' doc:name="Set Payload" doc:id="ca46e2da-b933-4ccc-8139-72fb11fdb19f" />
+	</flow> 
+	<flow name="callingtestcall" doc:id="a43b5d33-3e99-4896-9985-29dbd84f746c" >
+		<http:listener doc:name="Listener" doc:id="992a68b0-4c0d-4901-bc3a-0ff3162e38a6" config-ref="HTTP_Listener_config" path="callingtestcall"/>
+		<http:request method="GET" doc:name="Request" doc:id="ceb60252-7985-4130-8166-54b9f15fc7d9" config-ref="HTTP_Request_configuration" path="/testcall"/>
+	</flow>
+	<flow name="firstSuccessful" doc:id="e1074e23-fa44-455c-93a2-8f5854e36a40" >
+		<http:listener doc:name="Listener" doc:id="7c9d42d5-81a4-482b-a375-b6d9e5a972da" config-ref="HTTP_Listener_config" path="firstSuccessful"/>
+		<first-successful doc:name="First Successful" doc:id="198b59a5-91dd-437a-a26b-dd9eb34d106c" >
+			<route>
+				<file:read doc:name="Read non existent file" doc:id="4405d343-66e7-4e62-b2e7-d34d6dfe9b29" path="nonExistentFile"/>
+				<set-variable value="1" doc:name="Set successfulRoute var to route 1" doc:id="cca6e98b-c99f-4f29-8fe2-4f62a078732e" variableName="successfulRoute"/>
+			</route>
+			<route>
+				<set-payload value="#[vars.nonExistentVar!]" doc:name="Set Payload with non existent variable" doc:id="55c17d72-a1f4-43d6-9d0f-96b9a30658c5" />
+				<set-variable value="2" doc:name="Set successfulRoute var to route 2" doc:id="0711b7b1-f866-4c05-a9d0-0b3c626ae73f" variableName="successfulRoute" />
+			</route>
+			<route>
+				<set-variable value="3" doc:name="Set successfulRoute var to route 3" doc:id="897b4477-29a5-45a2-871f-271fd5f08847" variableName="successfulRoute" />
+				<logger level="INFO" doc:name="Logger" doc:id="e25a754d-20be-42c3-95e6-f007f9364e3e" message="The 3rd route got successfully executed"/>
+			
+</route>
+            <route >
+				<logger level="INFO" doc:name="Success route but not executed" doc:id="e2a61138-17fb-40ff-9cbf-3b25d5e8f4fb" message="This route is never going to be executed"/>
+			</route>
+		</first-successful>
+		<logger level="ERROR" doc:name="Logger" doc:id="5e72e4d1-dcba-40ff-9a54-cf1c9f4ed777" message="#['Successful route was' ++ vars.successfulRoute]"/>
+	</flow>
+</mule>

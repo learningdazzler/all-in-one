@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:os="http://www.mulesoft.org/schema/mule/os"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="testFlow" doc:id="59e8b0df-1c25-4901-bd9a-2e8c6f44e289" >
+		<http:listener doc:name="Listener" doc:id="e3eec92d-4432-485f-b8ac-815433c3238d" config-ref="HTTP_Listener_config" path="osStore"/>
+		<os:store doc:name="Store" doc:id="a9a00416-3362-453f-a1c7-e72b9db6268a" key="OSkey"/>
+	</flow>
+	<flow name="testFlow1" doc:id="d29c6593-9d5a-4b2b-9ca7-2c22ea3a0002" >
+		<http:listener doc:name="Listener" doc:id="afc8c3be-512c-4d06-941f-3939d737b86b" config-ref="HTTP_Listener_config" path="osContains"/>
+		<os:contains doc:name="Contains" doc:id="b4cf32ca-7767-4c1b-b936-463c7ce57919" key="OSkey"/>
+	</flow>
+	<flow name="testFlow2" doc:id="9f09ff7e-8ae3-47a5-95c4-27924302370e" >
+		<http:listener doc:name="Listener" doc:id="9167989e-2272-40b0-9251-a4b83ed6885c" config-ref="HTTP_Listener_config" path="osRetrieve"/>
+		<os:retrieve doc:name="Retrieve" doc:id="7592b648-8bd1-4e95-8383-d3b89b7cd2c4" key="OSkey"/>
+	</flow>
+	<flow name="testFlow3" doc:id="7a02f032-8546-4ecd-be99-a2c4f83a3ee6" >
+		<http:listener doc:name="Listener" doc:id="317b3f41-231c-482d-a8cf-9d57ddb8ab2f" config-ref="HTTP_Listener_config" path="osRetrieveAll"/>
+		<os:retrieve-all doc:name="Retrieve all" doc:id="e9738260-fdc2-4f3f-ad2b-da6c3051f421" />
+	</flow>
+	<flow name="testFlow4" doc:id="c40d30da-53d2-4964-91b8-90f9033a360a" >
+		<http:listener doc:name="Listener" doc:id="ca513b70-d863-4245-b3f8-6184812f3834" config-ref="HTTP_Listener_config" path="osRetrieveAllKeys"/>
+		<os:retrieve-all-keys doc:name="Retrieve all keys" doc:id="6c73f806-3587-4348-8d85-e65ddaaee949" />
+	</flow>
+	<flow name="testFlow5" doc:id="f28f19e0-2542-498c-89ab-eca9be69a457" >
+		<http:listener doc:name="Listener" doc:id="ac5759cd-59c3-4c93-897a-2f3b71105f62" config-ref="HTTP_Listener_config" path="osRemove"/>
+		<os:remove doc:name="Remove" doc:id="fef32290-d75c-488d-9629-c646d9207faa" key="OSkey"/>
+	</flow>
+	<flow name="testFlow6" doc:id="f4191f80-4964-486a-b902-cb2ba21b8b6f" >
+		<http:listener doc:name="Listener" doc:id="9284db21-16cc-40f8-800c-a406ff2b0c22" config-ref="HTTP_Listener_config" path="osClear"/>
+		<os:clear doc:name="Clear" doc:id="0e705a32-2f24-4694-937c-24e0389423fd" />
+	</flow>
+</mule>

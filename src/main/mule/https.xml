@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<!-- <flow name="HTTPSClientCalling" doc:id="de3025f7-6c78-4f89-a06b-2c2351d743d3" >
+		<http:listener doc:name="Listener" doc:id="4604e88e-fe51-4b7a-b2b4-ec96637bcf08" config-ref="HTTP_Listener_config" path="httpclientforhttps"/>
+		<logger level="INFO" doc:name="Http Logger" doc:id="95cf32c6-80ee-4d9a-8f8f-ca99fe497996" message="Now about to call HTTPS client"/>
+		<http:request method="GET" doc:name="HttpsServerRequest" doc:id="87a47bdf-1f5b-4eb7-ab6b-5f76c88f97b4" config-ref="HTTPS_Secured_Request_configuration"/>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="35e56958-06a3-4ed8-bec1-93799fb1e1ce" />
+	</flow>
+	<flow name="HTTPS_Server" doc:id="e4ade5c9-3819-4acc-ba52-a534d1e85ec4" >
+		<http:listener doc:name="Listener" doc:id="7248bc07-37b9-484a-a682-3c30045c3f1e" config-ref="HTTPS_Secured__Listener_config" path="securehelloworld"/>
+		<logger level="INFO" doc:name="Https Logger" doc:id="237e4d13-73b4-4054-ae49-f7c8028c30f3" message="Https logger"/>
+		<set-payload value="#['secured helloworld']" doc:name="Set Payload" doc:id="62c29268-f975-4fcb-84d8-e40b41b87231" />
+	</flow> -->
+</mule>

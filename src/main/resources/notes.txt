@@ -1,0 +1,8 @@
+Notes:
+
+1) Regarding 'testcall' and 'callingtestcall',  when 'testcall' flow is removed then it'll show 'No listener for endpoint: /mybasepath/testcall' with status '404 Not Found', now at this time, if we call 'callingtestcall' then it will show 'HTTP GET on resource 'http://localhost:8081/mybasepath/testcall' failed: not found (404).' with status '500 Server Error'
+
+2) Regarding 'MuleCreditVault', '${secure::propertyName}' will give the decrypted value even if the propertyName has encrypted value
+
+3)
+Interesting thing is, when you put properties files in a folder in ‘C’ or ‘D’ drive and  define the folder path in system environment variables with key as some name ‘config’ and value as the path of the folder where properties file exists, then it works if you use ${config} inside Studio.

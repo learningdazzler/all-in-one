@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="other-message-processorsFlow" doc:id="dac1a721-d49a-47c8-ab14-63ab4313f391" >
+		<tracking:custom-event doc:name="Custom Business Event" doc:id="0b6360aa-a1e7-49d2-a0be-45fd0053f268" event-name="Custom Business Event"/>
+		<ee:dynamic-evaluate doc:name="Dynamic Evaluate" doc:id="f9c4744c-57b0-49d2-98fd-3036da336c82" expression="#[payload]"/>
+	</flow>
+</mule>

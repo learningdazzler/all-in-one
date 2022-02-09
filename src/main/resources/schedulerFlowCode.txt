@@ -1,0 +1,18 @@
+<flow name="schedulerWithFixedFrequency" doc:id="ce7aa425-7c7b-48ed-8808-01650357b8a8" >
+		<scheduler doc:name="Scheduler" doc:id="a059aac5-1768-411a-a3e7-dab85fd88ab7" >
+			<scheduling-strategy >
+				<fixed-frequency startDelay="25" timeUnit="SECONDS" frequency="10"/>
+			</scheduling-strategy>
+		</scheduler>
+		<set-payload value='#["This is fixed width scheduler"]' doc:name="Set Payload" doc:id="46f46835-db22-4d68-aefd-641ca211c3fe" />
+		<logger level="INFO" doc:name="payload" doc:id="b9a71d88-a4bd-419b-b398-f82e3958bda5" message="#[payload]"/>
+	</flow>
+	<flow name="schedulerWithCRON" doc:id="2c44ce0c-b5dc-4ec4-988d-495bb19b497c" >
+		<scheduler doc:name="Scheduler" doc:id="e3b8fe23-ea48-432f-a5bb-7370655fe37b" doc:description="Run every 2 seconds of the day, every day">
+			<scheduling-strategy >
+				<cron expression="1/2 * * * * ?" />
+			</scheduling-strategy>
+		</scheduler>
+		<set-payload value='#["This is CRON scheduler"]' doc:name="Set Payload" doc:id="2eafa334-f550-431a-a4b4-9f67e5610caa" />
+		<logger level="INFO" doc:name="payload" doc:id="03131be2-c9ba-48fd-9349-04c807b9af31" message="#[payload]"/>
+	</flow>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="PlaceHoldersFromOutsideFlow" doc:id="22de87bd-7099-4c25-89b7-05ff2f52a842" doc:description="Interesting thing is, when you put properties files in a folder in ‘C’ or ‘D’ drive and  define the folder path in system environment variables with key as some name ‘config’ and value as the path of the folder where properties file exists, then it works if you use dollar of config inside Studio.">
+		<http:listener doc:name="Listener" doc:id="780d1d4e-c664-4ddd-b39e-d7f2afb8ef35" config-ref="HTTP_Listener_config" path="PlaceHoldersFromOutsideFlow"/>
+		<set-payload value='#["yes"]' doc:name="Set Payload" doc:id="40686e68-8556-444f-9141-bbe7399131e5" />
+	</flow>
+</mule>
